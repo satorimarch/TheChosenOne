@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="LightBackgroundColor" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="BackgroundColor" Color="AliceBlue"/>
+    <SolidColorBrush x:Key="RectangleColor" Color="#c8e1e6"/>
+    <SolidColorBrush x:Key="SettingButtonColor" Color="#F7A97B"/>
+    <SolidColorBrush x:Key="SettingButtonHighlightColor" Color="#FFFFCFB2"/>
+
+</ResourceDictionary>

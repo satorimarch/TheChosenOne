@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheChosenOne"
         mc:Ignorable="d"
-        Title="天选之子" Height="450" Width="800">
-    <Grid>
+        Title="天选之子" Height="450" Width="500" MinHeight="300" MinWidth="250" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="CircleButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderThickness="0" CornerRadius="50" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource SettingButtonHighlightColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{DynamicResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Button Style="{DynamicResource CircleButtonStyle}" Background="{DynamicResource SettingButtonColor}" Click="Button_Click_Open_Setting" Height="35" Width="35" Margin="10, 0, 0, 0" HorizontalAlignment="Left">
+            <Image Source="/Assets/settings-white.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25" />
+        </Button>
         
+        <Border Grid.RowSpan="3" Background="{DynamicResource RectangleColor}" CornerRadius="15" Height="100" Width="100">
+            <TextBlock x:Name="TBNumber" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Text="0"/>
+            
+        </Border>
+        <Button x:Name="ButtonPause" Content="开始" HorizontalAlignment="Center" Grid.Row="2" Height="24" Width="92" Click="Button_Click_Pause"/>
+
     </Grid>
 </Window>
