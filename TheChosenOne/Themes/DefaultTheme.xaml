@@ -1,10 +1,35 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="LightBackgroundColor" Color="AliceBlue"/>
-    <SolidColorBrush x:Key="BackgroundColor" Color="AliceBlue"/>
-    <SolidColorBrush x:Key="RectangleColor" Color="#c8e1e6"/>
-    <SolidColorBrush x:Key="SettingButtonColor" Color="#F7A97B"/>
-    <SolidColorBrush x:Key="SettingButtonHighlightColor" Color="#FFFFCFB2"/>
+    <Color x:Key="LightCmbColor">#FFE5E5E5</Color>
+    <Color x:Key="CmbColor">#FFE0E0E0</Color>
+    <Color x:Key="CmbMouseOverColor">#bdbdbd</Color>
+
+    <SolidColorBrush x:Key="LightBackgroundBrush" Color="#F0F0F0"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="AliceBlue"/>
+
+    <SolidColorBrush x:Key="RectangleBrush" Color="#c8e1e6"/>
+    
+    <SolidColorBrush x:Key="SettingButtonBrush" Color="#F7A97B"/>
+    <SolidColorBrush x:Key="SettingButtonHighlightBrush" Color="#FFCFB2"/>
+    
+    <SolidColorBrush x:Key="CmbItemHighlightBrush" Color="#bdbdbd"/>
+    <SolidColorBrush x:Key="CmbItemSelectedBrush" Color="#66ccff"/>
+    
+    <SolidColorBrush x:Key="FontBrush" Color="#000000"/>
+
+    <SolidColorBrush x:Key="ButtonBrush" Color="#DDDDDD"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#BEE6FD"/>
+    <SolidColorBrush x:Key="ButtonPressedBrush" Color="#C4E5F6"/>
+
+    <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="{DynamicResource LightCmbColor}" Offset="0.0"/>
+        <GradientStop Color="{DynamicResource CmbColor}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="{DynamicResource CmbMouseOverColor}" Offset="0.0"/>
+        <GradientStop Color="{DynamicResource CmbMouseOverColor}" Offset="1.0"/>
+    </LinearGradientBrush>
 
 </ResourceDictionary>

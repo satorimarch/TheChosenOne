@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+
+    <Color x:Key="LightCmbColor" >#303030</Color>
+    <Color x:Key="CmbColor" >#232323</Color>
+    <Color x:Key="CmbMouseOverColor">#444444</Color>
+
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#232323"/>
+    <SolidColorBrush x:Key="LightBackgroundBrush" Color="#494949"/>
+
+    <SolidColorBrush x:Key="RectangleBrush" Color="#494949"/>
+
+    <SolidColorBrush x:Key="SettingButtonBrush" Color="#F7A97B"/>
+    <SolidColorBrush x:Key="SettingButtonHighlightBrush" Color="#FFCFB2"/>
+
+    <SolidColorBrush x:Key="FontBrush" Color="#FFFFFF"/>
+    
+    <SolidColorBrush x:Key="ButtonBrush" Color="#494949"/>
+    <SolidColorBrush x:Key="ButtonMouseOverBrush" Color="#696969"/>
+    <SolidColorBrush x:Key="ButtonPressedBrush" Color="#696969"/>
+
+    <SolidColorBrush x:Key="CmbItemSelectedBrush" Color="#2a404d"/>
+    <SolidColorBrush x:Key="CmbItemHighlightBrush" Color="{StaticResource CmbMouseOverColor}"/>
+
+    <Style TargetType="ComboBox">
+        <Setter Property="Background" Value="{StaticResource LightBackgroundBrush}"/>
+    </Style>
+
+    <Style TargetType="ComboBoxItem">
+        <Setter Property="Background" Value="{StaticResource LightBackgroundBrush}"/>
+
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Foreground" Value="{StaticResource FontBrush}"/>
+        <Setter Property="Background" Value="{StaticResource LightBackgroundBrush}"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource FontBrush}"/>
+    </Style>
+
+    <!--<Style TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource FontBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonBrush}"/>
+    </Style>-->
+
+    <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="{DynamicResource LightCmbColor}" Offset="0.0"/>
+        <GradientStop Color="{DynamicResource CmbColor}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="{DynamicResource CmbMouseOverColor}" Offset="0.0"/>
+        <GradientStop Color="{DynamicResource CmbMouseOverColor}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+
+</ResourceDictionary>

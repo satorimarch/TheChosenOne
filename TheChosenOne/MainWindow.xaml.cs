@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheChosenOne.Themes;
 
 using Timer = System.Timers.Timer;
 
@@ -28,8 +29,8 @@ namespace TheChosenOne
         enum Mode
         {
             Sequential,
-            firstrandom,
-            random,
+            FirstRandom,
+            Random,
         }
 
         private Mode mode;
@@ -81,14 +82,16 @@ namespace TheChosenOne
                     TimerChangeNumber.Elapsed += TickSequential;
                     break;
 
-                case Mode.firstrandom:
+                case Mode.FirstRandom:
                     TimerChangeNumber.Elapsed += TickSequential;
                     break;
 
-                case Mode.random:
+                case Mode.Random:
                     TimerChangeNumber.Elapsed += TickRandom;
                     break;
             }
+
+            ThemeController.ChangeTheme(setting1.Default.Theme);
         }
 
 
@@ -118,7 +121,7 @@ namespace TheChosenOne
             else {
                 ButtonPause.Content = "结束";
                 gameStart = true;
-                if (mode == Mode.firstrandom) {
+                if (mode == Mode.FirstRandom) {
                     currNumber = random.Next(minNumber, maxNumber);
                 }
 

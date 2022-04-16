@@ -16,7 +16,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="Background" TargetName="border" Value="{DynamicResource SettingButtonHighlightColor}"/>
+                                <Setter Property="Background" TargetName="border" Value="{DynamicResource SettingButtonHighlightBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -25,17 +25,18 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="{DynamicResource BackgroundColor}">
+    <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Button Style="{DynamicResource CircleButtonStyle}" Background="{DynamicResource SettingButtonColor}" Click="Button_Click_Open_Setting" Height="35" Width="35" Margin="10, 0, 0, 0" HorizontalAlignment="Left">
+        
+        <Button Style="{DynamicResource CircleButtonStyle}" Background="{DynamicResource SettingButtonBrush}" Click="Button_Click_Open_Setting" Height="35" Width="35" Margin="10, 0, 0, 0" HorizontalAlignment="Left">
             <Image Source="/Assets/settings-white.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25" />
         </Button>
-        
-        <Border Grid.RowSpan="3" Background="{DynamicResource RectangleColor}" CornerRadius="15" Height="100" Width="100">
+
+        <Border Grid.RowSpan="3" Background="{DynamicResource RectangleBrush}" CornerRadius="15" Height="100" Width="100">
             <TextBlock x:Name="TBNumber" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Text="0"/>
             
         </Border>

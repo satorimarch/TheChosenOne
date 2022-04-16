@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TheChosenOne"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="设置" Height="400" Width="350" MinHeight="350" MinWidth="300">
+        Title="设置" Height="350" Width="350" MinHeight="350" MinWidth="300"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>
         <Style x:Key="SettingLine" TargetType="Control">
@@ -14,16 +15,18 @@
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Margin" Value="10, 0, 0, 0"/>
             <Setter Property="Width" Value="100"/>
+            <Setter Property="Background" Value="{DynamicResource LightBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource FontBrush}"/>
         </Style>
-
     </Window.Resources>
 
-    <Grid Background="{DynamicResource BackgroundColor}">
+    <Grid Background="{DynamicResource BackgroundBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -56,7 +59,12 @@
             <RadioButton x:Name="RadioBtn_mode_2" GroupName="RadioBtn_mode" Content="完全随机" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtn_mode_Checked" />
         </StackPanel>
 
-        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="5" Click="Button_Confirm_change" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock><Run Language="zh-cn" Text="主题:"/></TextBlock>
+            <ComboBox ItemTemplate="{DynamicResource ComboBoxItemTemplate}" ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle}" Template="{DynamicResource ComboBoxTemplate}" Name="ComboBox_Theme" Width="120" Height="20" VerticalAlignment="Top" Margin="10, 0, 0, 0" />
+        </StackPanel>
 
+        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="6" Click="Button_Confirm_change" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.ColumnSpan="2" />
+        <!--<Button Content="关闭设置" Width="70" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Bottom"  Margin="0,0,0,50" Grid.Column="2" Grid.ColumnSpan="4" Click="Button_Click_CloseWindow" />-->
     </Grid>
 </Window>
