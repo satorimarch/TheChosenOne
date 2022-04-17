@@ -25,7 +25,7 @@ namespace TheChosenOne {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public int Interval {
             get {
                 return ((int)(this["Interval"]));
@@ -37,7 +37,7 @@ namespace TheChosenOne {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("33")]
         public int DrawInterval {
             get {
                 return ((int)(this["DrawInterval"]));
@@ -92,6 +92,18 @@ namespace TheChosenOne {
             }
             set {
                 this["Theme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AniOn {
+            get {
+                return ((bool)(this["AniOn"]));
+            }
+            set {
+                this["AniOn"] = value;
             }
         }
     }

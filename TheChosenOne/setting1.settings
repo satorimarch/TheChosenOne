@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Interval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="DrawInterval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">33</Value>
     </Setting>
     <Setting Name="MinNumber" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="Theme" Type="System.String" Scope="User">
       <Value Profile="(Default)">DefaultTheme</Value>
+    </Setting>
+    <Setting Name="AniOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

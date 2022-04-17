@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TheChosenOne"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="设置" Height="350" Width="350" MinHeight="350" MinWidth="300"
+        Title="设置" Height="400" Width="350" MinHeight="350" MinWidth="300"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>
@@ -26,6 +26,7 @@
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
@@ -64,7 +65,12 @@
             <ComboBox ItemTemplate="{DynamicResource ComboBoxItemTemplate}" ItemContainerStyle="{DynamicResource ComboBoxItemContainerStyle}" Template="{DynamicResource ComboBoxTemplate}" Name="ComboBox_Theme" Width="120" Height="20" VerticalAlignment="Top" Margin="10, 0, 0, 0" />
         </StackPanel>
 
-        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="6" Click="Button_Confirm_change" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.ColumnSpan="2" />
-        <!--<Button Content="关闭设置" Width="70" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Bottom"  Margin="0,0,0,50" Grid.Column="2" Grid.ColumnSpan="4" Click="Button_Click_CloseWindow" />-->
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock><Run Language="zh-cn" Text="动画:"/></TextBlock>
+            <RadioButton x:Name="RadioBtn_ani_1" GroupName="RadioBtn_ani" Content="开" Width="auto" Style="{StaticResource SettingLine}"/>
+            <RadioButton x:Name="RadioBtn_ani_0" GroupName="RadioBtn_ani" Content="关" Width="auto" Style="{StaticResource SettingLine}"/>
+        </StackPanel>
+
+        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="7" Click="Button_Confirm_change" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

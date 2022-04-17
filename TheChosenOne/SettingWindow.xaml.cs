@@ -46,9 +46,10 @@ namespace TheChosenOne
                 }
                 index++;
             }
-            
 
             ((RadioButton)FindName("RadioBtn_mode_" + setting.Mode.ToString())).IsChecked = true;
+            if (setting.AniOn) RadioBtn_ani_1.IsChecked = true;
+            else RadioBtn_ani_0.IsChecked = true;
         }
 
         private void Button_Confirm_change(object sender, RoutedEventArgs e)
@@ -70,6 +71,9 @@ namespace TheChosenOne
                     setting.MaxNumber = maxNumber;
                     throw new Exception("WrongRangeInput");
                 }
+                
+                setting.AniOn = (bool)RadioBtn_ani_1.IsChecked;
+                
                 ((MainWindow)Owner).Init_Setting();
             }
             catch {
