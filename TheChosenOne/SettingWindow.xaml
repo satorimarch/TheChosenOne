@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TheChosenOne"
         mc:Ignorable="d"
         WindowStartupLocation="CenterOwner"
-        Title="设置" Height="400" Width="350" MinHeight="350" MinWidth="300"
+        Title="设置" Height="400" Width="350"
+        ResizeMode="NoResize"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Window.Resources>

@@ -39,7 +39,8 @@ namespace TheChosenOne
         private int minNumber;
         private int currNumber;
         private bool gameStart;
-        private bool AniOn;
+        private bool ShowAni;
+        private bool AniIsOn;
         private Random random = new Random();
         private Timer TimerChangeNumber = new Timer();
         private Timer TimerDrawNumber = new Timer();
@@ -83,7 +84,9 @@ namespace TheChosenOne
                 new Action(
                     delegate
                     {
-                        TBNumber_tt.BeginAnimation(TranslateTransform.YProperty, da1);
+                        if (AniIsOn) {
+                            TBNumber_tt.BeginAnimation(TranslateTransform.YProperty, da1);
+                        }
                     }
                 )
             );
@@ -93,12 +96,12 @@ namespace TheChosenOne
         {
             TimerChangeNumber.Interval = setting1.Default.Interval;
             TimerDrawNumber.Interval = setting1.Default.DrawInterval;
-            
+
             TimerAnimation.Interval = setting1.Default.Interval;
             da1.Duration = new Duration(TimeSpan.FromMilliseconds(setting1.Default.Interval));
             da2.Duration = new Duration(TimeSpan.FromMilliseconds(setting1.Default.Interval));
 
-            AniOn = setting1.Default.AniOn;
+            ShowAni = setting1.Default.AniOn;
 
             minNumber = setting1.Default.MinNumber;
             maxNumber = setting1.Default.MaxNumber;
@@ -149,8 +152,9 @@ namespace TheChosenOne
 
                 TimerChangeNumber.Stop();
                 TimerDrawNumber.Stop();
-                if (AniOn) {
+                if (ShowAni) {
                     TimerAnimation.Stop();
+                    AniIsOn = false;
                     TBNumber_tt.BeginAnimation(TranslateTransform.YProperty, da2);
                 }
                 ButtonPause.Content = "开始";
@@ -165,7 +169,8 @@ namespace TheChosenOne
 
                 TimerChangeNumber.Start();
                 TimerDrawNumber.Start();
-                if (AniOn) {
+                if (ShowAni) {
+                    AniIsOn = true;
                     TimerAnimation.Start();
                 }
             }
