@@ -35,131 +35,133 @@ namespace TheChosenOne
         }
 
         private Mode mode;
-        private int maxNumber;
-        private int minNumber;
-        private int currNumber;
+        private int maxNum;
+        private int minNum;
+        private int currNum;
         private bool gameStart;
-        private bool ShowAni;
-        private bool AniIsOn;
+        private bool showAni;
+        private bool aniIsShowing;
+
+        private setting1 setting = setting1.Default;
         private Random random = new Random();
-        private Timer TimerChangeNumber = new Timer();
-        private Timer TimerDrawNumber = new Timer();
-        private Timer TimerAnimation = new Timer();
-        private DoubleAnimation da1 = new DoubleAnimation();
-        private DoubleAnimation da2 = new DoubleAnimation();
+        private Timer timerChangeNum = new Timer();
+        private Timer timerPaintNum = new Timer();
+        private Timer timerAnimation = new Timer();
+        private DoubleAnimation dAniScroll = new DoubleAnimation();
+        private DoubleAnimation dAniReturn = new DoubleAnimation();
 
         public MainWindow()
         {
             gameStart = false;
 
-            TimerDrawNumber.Elapsed += (o, e) =>
+            timerPaintNum.Elapsed += (o, e) =>
             {
-                TBNumber.Dispatcher.BeginInvoke(
+                TBlockNum.Dispatcher.BeginInvoke(
                     new Action(
                         delegate
                         {
-                            if (TBNumber.Text != currNumber.ToString()) {
-                                TBNumber.Text = currNumber.ToString();
+                            if (TBlockNum.Text != currNum.ToString()) {
+                                TBlockNum.Text = currNum.ToString();
                             }
                         }
                     )
                 );
             };
 
-            da1.From = -65;
-            da1.To = 65;
+            dAniScroll.From = -65;
+            dAniScroll.To = 65;
 
-            da2.From = -65;
-            da2.To = 0;
+            dAniReturn.From = -65;
+            dAniReturn.To = 0;
 
-            TimerAnimation.Elapsed += DrawWithAnimation;
+            timerAnimation.Elapsed += ShowAnimation;
 
             InitializeComponent();
-            Init_Setting();
+            InitSetting();
         }
 
-        private void DrawWithAnimation(object sender, ElapsedEventArgs e)
+        private void ShowAnimation(object sender, ElapsedEventArgs e)
         {
-            TBNumber.Dispatcher.Invoke(
+            TBlockNum.Dispatcher.Invoke(
                 new Action(
                     delegate
                     {
-                        if (AniIsOn) {
-                            TBNumber_tt.BeginAnimation(TranslateTransform.YProperty, da1);
+                        if (aniIsShowing) {
+                            TBlockNum_tTransform.BeginAnimation(TranslateTransform.YProperty, dAniScroll);
                         }
                     }
                 )
             );
         }
 
-        internal void Init_Setting()
+        internal void InitSetting()
         {
-            TimerChangeNumber.Interval = setting1.Default.Interval;
-            TimerDrawNumber.Interval = setting1.Default.DrawInterval;
+            timerChangeNum.Interval = setting.Interval;
+            timerPaintNum.Interval = setting.DrawInterval;
 
-            TimerAnimation.Interval = setting1.Default.Interval;
-            da1.Duration = new Duration(TimeSpan.FromMilliseconds(setting1.Default.Interval));
-            da2.Duration = new Duration(TimeSpan.FromMilliseconds(setting1.Default.Interval));
+            timerAnimation.Interval = setting.Interval;
+            dAniScroll.Duration = new Duration(TimeSpan.FromMilliseconds(setting.Interval));
+            dAniReturn.Duration = new Duration(TimeSpan.FromMilliseconds(setting.Interval));
 
-            ShowAni = setting1.Default.AniOn;
+            showAni = setting.ShowAni;
 
-            minNumber = setting1.Default.MinNumber;
-            maxNumber = setting1.Default.MaxNumber;
+            minNum = setting.MinNum;
+            maxNum = setting.MaxNum;
 
 
-            TBNumber.Text = minNumber.ToString();
+            TBlockNum.Text = minNum.ToString();
 
-            mode = (Mode)setting1.Default.Mode;
+            mode = (Mode)setting.Mode;
 
             switch (mode) {
                 case Mode.Sequential:
-                    TimerChangeNumber.Elapsed -= TickRandom;
-                    TimerChangeNumber.Elapsed += TickSequential;
+                    timerChangeNum.Elapsed -= TickRandom;
+                    timerChangeNum.Elapsed += TickSequential;
                     break;
 
                 case Mode.FirstRandom:
-                    TimerChangeNumber.Elapsed -= TickRandom;
-                    TimerChangeNumber.Elapsed += TickSequential;
+                    timerChangeNum.Elapsed -= TickRandom;
+                    timerChangeNum.Elapsed += TickSequential;
                     break;
 
                 case Mode.Random:
-                    TimerChangeNumber.Elapsed -= TickSequential;
-                    TimerChangeNumber.Elapsed += TickRandom;
+                    timerChangeNum.Elapsed -= TickSequential;
+                    timerChangeNum.Elapsed += TickRandom;
                     break;
             }
 
-            ThemeController.ChangeTheme(setting1.Default.Theme);
+            ThemeController.ChangeTheme(setting.Theme);
         }
 
 
         private void TickSequential(object sender, ElapsedEventArgs e)
         {
-            if (currNumber < maxNumber) currNumber++;
-            else currNumber = minNumber;
+            if (currNum < maxNum) currNum++;
+            else currNum = minNum;
 #if DEBUG
-            Console.WriteLine($"{currNumber} id:{Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"{currNum} id:{Thread.CurrentThread.ManagedThreadId}");
 #endif
         }
 
 
         private void TickRandom(object sender, ElapsedEventArgs e)
         {
-            currNumber = random.Next(minNumber, maxNumber);
+            currNum = random.Next(minNum, maxNum);
 #if DEBUG
-            Console.WriteLine($"{currNumber} id:{Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"{currNum} id:{Thread.CurrentThread.ManagedThreadId}");
 #endif
         }
 
 
-        private void Button_Click_Pause(object sender, RoutedEventArgs e)
+        private void ButtonClick_Pause(object sender, RoutedEventArgs e)
         {
             if (gameStart) {
-                TimerChangeNumber.Stop();
-                TimerDrawNumber.Stop();
-                if (ShowAni) {
-                    TimerAnimation.Stop();
-                    AniIsOn = false;
-                    TBNumber_tt.BeginAnimation(TranslateTransform.YProperty, da2);
+                timerChangeNum.Stop();
+                timerPaintNum.Stop();
+                if (showAni) {
+                    timerAnimation.Stop();
+                    aniIsShowing = false;
+                    TBlockNum_tTransform.BeginAnimation(TranslateTransform.YProperty, dAniReturn);
                 }
                 ButtonPause.Content = "开始";
                 gameStart = false;
@@ -169,21 +171,21 @@ namespace TheChosenOne
                 gameStart = true;
                 ButtonPause.Content = "结束";
                 if (mode == Mode.FirstRandom) {
-                    currNumber = random.Next(minNumber, maxNumber);
+                    currNum = random.Next(minNum, maxNum);
                 }
-                TimerChangeNumber.Start();
-                TimerDrawNumber.Start();
-                if (ShowAni) {
-                    AniIsOn = true;
-                    TimerAnimation.Start();
+                timerChangeNum.Start();
+                timerPaintNum.Start();
+                if (showAni) {
+                    aniIsShowing = true;
+                    timerAnimation.Start();
                 }
             }
         }
 
-        private void Button_Click_Open_Setting(object sender, RoutedEventArgs e)
+        private void ButtonClick_OpenSetting(object sender, RoutedEventArgs e)
         {
             if (gameStart) {
-                Button_Click_Pause(null, null);
+                ButtonClick_Pause(null, null);
             }
             SettingWindow settingWindow = new SettingWindow();
             settingWindow.Owner = this;

@@ -56,9 +56,9 @@
 
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
             <TextBlock><Run Language="zh-cn" Text="模式:"/></TextBlock>
-            <RadioButton x:Name="RadioBtn_mode_0" GroupName="RadioBtn_mode" Content="顺序" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtn_mode_Checked" />
-            <RadioButton x:Name="RadioBtn_mode_1" GroupName="RadioBtn_mode" Content="首个随机" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtn_mode_Checked" />
-            <RadioButton x:Name="RadioBtn_mode_2" GroupName="RadioBtn_mode" Content="完全随机" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtn_mode_Checked" />
+            <RadioButton x:Name="RadioBtn_mode_0" GroupName="RadioBtn_mode" Content="顺序" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtnChecked_Mode" />
+            <RadioButton x:Name="RadioBtn_mode_1" GroupName="RadioBtn_mode" Content="首个随机" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtnChecked_Mode" />
+            <RadioButton x:Name="RadioBtn_mode_2" GroupName="RadioBtn_mode" Content="完全随机" Width="auto" Style="{StaticResource SettingLine}" Checked="RadionBtnChecked_Mode" />
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
@@ -72,6 +72,6 @@
             <RadioButton x:Name="RadioBtn_ani_0" GroupName="RadioBtn_ani" Content="关" Width="auto" Style="{StaticResource SettingLine}"/>
         </StackPanel>
 
-        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="7" Click="Button_Confirm_change" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.ColumnSpan="2" />
+        <Button Content="确认" Width="70" HorizontalAlignment="Center" Grid.Row="7" Click="ButtonClick_ConfirmChange" VerticalAlignment="Bottom" Margin="0,0,0,50" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

@@ -10,35 +10,37 @@ namespace TheChosenOne.Themes
 {
     public class ThemeController
     {
-        public static readonly List<Theme> themes;
-        public static string currentTheme { get; private set; }
+        public static readonly List<Theme> Themes;
+        public static string CurrentTheme { get; private set; }
     
         static ThemeController()
         {
-            themes = new List<Theme>();
-            themes.Add(new Theme("默认主题", "DefaultTheme", "AliceBlue"));
-            themes.Add(new Theme("深色主题", "DarkTheme", "#232323"));
+            Themes = new List<Theme>
+            {
+                new Theme("默认主题", "DefaultTheme", "AliceBlue"),
+                new Theme("深色主题", "DarkTheme", "#232323"),
+            };
         }
 
         public static void ChangeTheme(string themePath)
         {
             Uri uri = new Uri($"Themes/{themePath}.xaml", UriKind.Relative);
             Application.Current.Resources.MergedDictionaries[0] = new ResourceDictionary() { Source = uri };
-            currentTheme = themePath;
+            CurrentTheme = themePath;
         }
     }
 
     public class Theme
     {
-        public string name { get; set; }
-        public string path { get; set; }
-        public SolidColorBrush brush { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
+        public SolidColorBrush Brush { get; set; }
 
         public Theme(string n, string p, string b)
         {
-            name = n;
-            path = p;
-            brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(b));
+            Name = n;
+            Path = p;
+            Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(b));
         }
     }
 }

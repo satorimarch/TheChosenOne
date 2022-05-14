@@ -32,20 +32,18 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-        <Button Style="{DynamicResource CircleButtonStyle}" Background="{DynamicResource SettingButtonBrush}" Click="Button_Click_Open_Setting" Height="35" Width="35" Margin="10, 0, 0, 0" HorizontalAlignment="Left">
+        <Button Style="{DynamicResource CircleButtonStyle}" Background="{DynamicResource SettingButtonBrush}" Click="ButtonClick_OpenSetting" Height="35" Width="35" Margin="10, 0, 0, 0" HorizontalAlignment="Left">
             <Image Source="/Assets/settings-white.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Height="25" Width="25" />
         </Button>
 
         <Border Grid.RowSpan="3" ClipToBounds="True" Background="{DynamicResource RectangleBrush}" CornerRadius="15" Height="100" Width="100">
-            <TextBlock x:Name="TBNumber" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock x:Name="TBlockNum" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock.RenderTransform>
-                    <TranslateTransform x:Name="TBNumber_tt">
-                        
-                    </TranslateTransform>
+                    <TranslateTransform x:Name="TBlockNum_tTransform"/>
                 </TextBlock.RenderTransform>
             </TextBlock>
         </Border>
-        <Button x:Name="ButtonPause" Content="开始" HorizontalAlignment="Center" Grid.Row="2" Height="24" Width="92" Click="Button_Click_Pause"/>
+        <Button x:Name="ButtonPause" Content="开始" HorizontalAlignment="Center" Grid.Row="2" Height="24" Width="92" Click="ButtonClick_Pause"/>
 
     </Grid>
 </Window>

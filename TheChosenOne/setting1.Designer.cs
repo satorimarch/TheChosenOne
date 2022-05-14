@@ -50,24 +50,24 @@ namespace TheChosenOne {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int MinNumber {
+        public int MinNum {
             get {
-                return ((int)(this["MinNumber"]));
+                return ((int)(this["MinNum"]));
             }
             set {
-                this["MinNumber"] = value;
+                this["MinNum"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("45")]
-        public int MaxNumber {
+        public int MaxNum {
             get {
-                return ((int)(this["MaxNumber"]));
+                return ((int)(this["MaxNum"]));
             }
             set {
-                this["MaxNumber"] = value;
+                this["MaxNum"] = value;
             }
         }
         
@@ -98,12 +98,12 @@ namespace TheChosenOne {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AniOn {
+        public bool ShowAni {
             get {
-                return ((bool)(this["AniOn"]));
+                return ((bool)(this["ShowAni"]));
             }
             set {
-                this["AniOn"] = value;
+                this["ShowAni"] = value;
             }
         }
     }
