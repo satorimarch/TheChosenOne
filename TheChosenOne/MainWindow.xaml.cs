@@ -136,20 +136,24 @@ namespace TheChosenOne
         {
             if (currNumber < maxNumber) currNumber++;
             else currNumber = minNumber;
+#if DEBUG
             Console.WriteLine($"{currNumber} id:{Thread.CurrentThread.ManagedThreadId}");
+#endif
         }
 
 
         private void TickRandom(object sender, ElapsedEventArgs e)
         {
             currNumber = random.Next(minNumber, maxNumber);
+#if DEBUG
+            Console.WriteLine($"{currNumber} id:{Thread.CurrentThread.ManagedThreadId}");
+#endif
         }
 
 
         private void Button_Click_Pause(object sender, RoutedEventArgs e)
         {
             if (gameStart) {
-
                 TimerChangeNumber.Stop();
                 TimerDrawNumber.Stop();
                 if (ShowAni) {
@@ -160,13 +164,13 @@ namespace TheChosenOne
                 ButtonPause.Content = "开始";
                 gameStart = false;
             }
+
             else {
-                ButtonPause.Content = "结束";
                 gameStart = true;
+                ButtonPause.Content = "结束";
                 if (mode == Mode.FirstRandom) {
                     currNumber = random.Next(minNumber, maxNumber);
                 }
-
                 TimerChangeNumber.Start();
                 TimerDrawNumber.Start();
                 if (ShowAni) {

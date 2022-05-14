@@ -55,9 +55,6 @@ namespace TheChosenOne
         private void Button_Confirm_change(object sender, RoutedEventArgs e)
         {
             try {
-                int minNumber = setting.MinNumber;
-                int maxNumber = setting.MaxNumber;
-
                 setting.Interval = int.Parse(TextBox_Interval.Text);
                 setting.DrawInterval = int.Parse(TextBox_DrawInterval.Text);
                 setting.MinNumber = int.Parse(TextBox_MinNumber.Text);
@@ -67,19 +64,25 @@ namespace TheChosenOne
                 setting.Theme = ((Theme)ComboBox_Theme.SelectedItem).path;
 
                 if (setting.MinNumber > setting.MaxNumber) {
-                    setting.MinNumber = minNumber;
-                    setting.MaxNumber = maxNumber;
-                    throw new Exception("WrongRangeInput");
+                    int temp = setting.MaxNumber;
+                    setting.MaxNumber = setting.MinNumber;
+                    setting.MinNumber = temp;
                 }
                 
                 setting.AniOn = (bool)RadioBtn_ani_1.IsChecked;
-                
+                if(setting.AniOn && setting.Interval <= 15) {
+                    setting.AniOn = false;
+                    MessageBox.Show("由于更新间隔过小, 动画已自动关闭", "确认", MessageBoxButton.OK, MessageBoxImage.Warning);                    
+                }
+
                 ((MainWindow)Owner).Init_Setting();
             }
-            catch {
-                MessageBox.Show("输入无效", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            catch (Exception ex){
+                MessageBox.Show($"修改失败\n{ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+
             setting.Save();
             this.Close();
             MessageBox.Show("修改成功", "消息", MessageBoxButton.OK, MessageBoxImage.Information);
