@@ -98,12 +98,12 @@ namespace TheChosenOne {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ShowAni {
+        public bool HasAni {
             get {
-                return ((bool)(this["ShowAni"]));
+                return ((bool)(this["HasAni"]));
             }
             set {
-                this["ShowAni"] = value;
+                this["HasAni"] = value;
             }
         }
     }

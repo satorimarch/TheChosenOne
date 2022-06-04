@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using TheChosenOne.Themes;
 
 namespace TheChosenOne
@@ -39,8 +29,8 @@ namespace TheChosenOne
             ComboBox_Theme.ItemsSource = ThemeController.Themes;
 
             int index = 0;
-            foreach(Theme item in ComboBox_Theme.Items) {
-                if(item.Path == ThemeController.CurrentTheme) {
+            foreach (Theme item in ComboBox_Theme.Items) {
+                if (item.Path == ThemeController.CurrentTheme) {
                     ComboBox_Theme.SelectedIndex = index;
                     break;
                 }
@@ -48,7 +38,7 @@ namespace TheChosenOne
             }
 
             ((RadioButton)FindName("RadioBtn_mode_" + setting.Mode.ToString())).IsChecked = true;
-            if (setting.ShowAni) RadioBtn_ani_1.IsChecked = true;
+            if (setting.HasAni) RadioBtn_ani_1.IsChecked = true;
             else RadioBtn_ani_0.IsChecked = true;
         }
 
@@ -67,16 +57,16 @@ namespace TheChosenOne
                     (setting.MinNum, setting.MaxNum) = (setting.MaxNum, setting.MinNum);
                 }
 
-                setting.ShowAni = (bool)RadioBtn_ani_1.IsChecked;
-                if(setting.ShowAni && setting.Interval <= 15) {
-                    setting.ShowAni = false;
-                    MessageBox.Show("由于更新间隔过小, 动画已自动关闭", "确认", MessageBoxButton.OK, MessageBoxImage.Warning);                    
+                setting.HasAni = (bool)RadioBtn_ani_1.IsChecked;
+                if (setting.HasAni && setting.Interval <= 15) {
+                    setting.HasAni = false;
+                    MessageBox.Show("由于更新间隔过小, 动画已自动关闭", "确认", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
                 ((MainWindow)Owner).InitSetting();
             }
 
-            catch (Exception ex){
+            catch (Exception ex) {
                 MessageBox.Show($"修改失败\n{ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
@@ -84,7 +74,7 @@ namespace TheChosenOne
             setting.Save();
             this.Close();
             MessageBox.Show("修改成功", "消息", MessageBoxButton.OK, MessageBoxImage.Information);
-            
+
         }
 
         private void RadionBtnChecked_Mode(object sender, RoutedEventArgs e)

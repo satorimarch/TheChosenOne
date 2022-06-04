@@ -20,7 +20,7 @@
     <Setting Name="Theme" Type="System.String" Scope="User">
       <Value Profile="(Default)">DefaultTheme</Value>
     </Setting>
-    <Setting Name="ShowAni" Type="System.Boolean" Scope="User">
+    <Setting Name="HasAni" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

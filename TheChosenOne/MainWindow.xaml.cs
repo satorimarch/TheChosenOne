@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TheChosenOne.Themes;
 
 using Timer = System.Timers.Timer;
@@ -39,16 +27,16 @@ namespace TheChosenOne
         private int minNum;
         private int currNum;
         private bool gameStart;
-        private bool showAni;
+        private bool hasAni;
         private bool aniIsShowing;
 
-        private setting1 setting = setting1.Default;
-        private Random random = new Random();
-        private Timer timerChangeNum = new Timer();
-        private Timer timerPaintNum = new Timer();
-        private Timer timerAnimation = new Timer();
-        private DoubleAnimation dAniScroll = new DoubleAnimation();
-        private DoubleAnimation dAniReturn = new DoubleAnimation();
+        private readonly setting1 setting = setting1.Default;
+        private readonly Random random = new Random();
+        private readonly Timer timerChangeNum = new Timer();
+        private readonly Timer timerPaintNum = new Timer();
+        private readonly Timer timerAnimation = new Timer();
+        private readonly DoubleAnimation dAniScroll = new DoubleAnimation();
+        private readonly DoubleAnimation dAniReturn = new DoubleAnimation();
 
         public MainWindow()
         {
@@ -57,12 +45,10 @@ namespace TheChosenOne
             timerPaintNum.Elapsed += (o, e) =>
             {
                 TBlockNum.Dispatcher.BeginInvoke(
-                    new Action(
-                        delegate
+                    new Action(() =>
                         {
-                            if (TBlockNum.Text != currNum.ToString()) {
+                            if (TBlockNum.Text != currNum.ToString())
                                 TBlockNum.Text = currNum.ToString();
-                            }
                         }
                     )
                 );
@@ -74,24 +60,20 @@ namespace TheChosenOne
             dAniReturn.From = -65;
             dAniReturn.To = 0;
 
-            timerAnimation.Elapsed += ShowAnimation;
+            timerAnimation.Elapsed += (o, e) =>
+            {
+                TBlockNum.Dispatcher.Invoke(
+                    new Action(() =>
+                        {
+                            if (aniIsShowing)
+                                TBlockNum_tTransform.BeginAnimation(TranslateTransform.YProperty, dAniScroll);
+                        }
+                    )
+                );
+            };
 
             InitializeComponent();
             InitSetting();
-        }
-
-        private void ShowAnimation(object sender, ElapsedEventArgs e)
-        {
-            TBlockNum.Dispatcher.Invoke(
-                new Action(
-                    delegate
-                    {
-                        if (aniIsShowing) {
-                            TBlockNum_tTransform.BeginAnimation(TranslateTransform.YProperty, dAniScroll);
-                        }
-                    }
-                )
-            );
         }
 
         internal void InitSetting()
@@ -103,11 +85,10 @@ namespace TheChosenOne
             dAniScroll.Duration = new Duration(TimeSpan.FromMilliseconds(setting.Interval));
             dAniReturn.Duration = new Duration(TimeSpan.FromMilliseconds(setting.Interval));
 
-            showAni = setting.ShowAni;
+            hasAni = setting.HasAni;
 
             minNum = setting.MinNum;
             maxNum = setting.MaxNum;
-
 
             TBlockNum.Text = minNum.ToString();
 
@@ -158,7 +139,7 @@ namespace TheChosenOne
             if (gameStart) {
                 timerChangeNum.Stop();
                 timerPaintNum.Stop();
-                if (showAni) {
+                if (hasAni) {
                     timerAnimation.Stop();
                     aniIsShowing = false;
                     TBlockNum_tTransform.BeginAnimation(TranslateTransform.YProperty, dAniReturn);
@@ -175,7 +156,7 @@ namespace TheChosenOne
                 }
                 timerChangeNum.Start();
                 timerPaintNum.Start();
-                if (showAni) {
+                if (hasAni) {
                     aniIsShowing = true;
                     timerAnimation.Start();
                 }

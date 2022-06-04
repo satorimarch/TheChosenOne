@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
 namespace TheChosenOne.Themes
 {
-    public class ThemeController
+    public static class ThemeController
     {
         public static readonly List<Theme> Themes;
         public static string CurrentTheme { get; private set; }
-    
+
         static ThemeController()
         {
             Themes = new List<Theme>
