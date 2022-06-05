@@ -38,6 +38,7 @@ namespace TheChosenOne
         private readonly DoubleAnimation dAniScroll = new DoubleAnimation();
         private readonly DoubleAnimation dAniReturn = new DoubleAnimation();
 
+
         public MainWindow()
         {
             gameStart = false;
@@ -47,8 +48,7 @@ namespace TheChosenOne
                 TBlockNum.Dispatcher.BeginInvoke(
                     new Action(() =>
                         {
-                            if (TBlockNum.Text != currNum.ToString())
-                                TBlockNum.Text = currNum.ToString();
+                            TBlockNum.Text = currNum.ToString();
                         }
                     )
                 );
@@ -90,18 +90,16 @@ namespace TheChosenOne
             minNum = setting.MinNum;
             maxNum = setting.MaxNum;
 
-            TBlockNum.Text = minNum.ToString();
+            if (currNum != 0) TBlockNum.Text = currNum.ToString();
+            else TBlockNum.Text = minNum.ToString();
 
             mode = (Mode)setting.Mode;
 
             switch (mode) {
                 case Mode.Sequential:
-                    timerChangeNum.Elapsed -= TickRandom;
-                    timerChangeNum.Elapsed += TickSequential;
-                    break;
-
                 case Mode.FirstRandom:
                     timerChangeNum.Elapsed -= TickRandom;
+                    timerChangeNum.Elapsed -= TickSequential;
                     timerChangeNum.Elapsed += TickSequential;
                     break;
 
@@ -151,9 +149,12 @@ namespace TheChosenOne
             else {
                 gameStart = true;
                 ButtonPause.Content = "结束";
-                if (mode == Mode.FirstRandom) {
+
+                if (mode == Mode.FirstRandom || mode == Mode.Random) {
                     currNum = random.Next(minNum, maxNum);
                 }
+                else currNum = minNum;
+
                 timerChangeNum.Start();
                 timerPaintNum.Start();
                 if (hasAni) {
